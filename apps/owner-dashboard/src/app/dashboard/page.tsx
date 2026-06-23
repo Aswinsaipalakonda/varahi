@@ -123,7 +123,7 @@ export default function OverviewPage() {
               <div className="flex items-start justify-between">
                 <div className="space-y-1">
                   <span className="text-[10px] font-bold text-slate-400 tracking-wider uppercase font-mono">{card.label}</span>
-                  <h2 className="text-2xl font-extrabold font-mono tracking-tight">{card.value}</h2>
+                  <h2 className="text-2xl font-extrabold font-sans tracking-tight leading-8" style={{ fontSize: '24px', fontWeight: 800, lineHeight: '32px' }}>{card.value}</h2>
                 </div>
                 <div className="p-3 bg-white/10 rounded-2xl">
                   <Icon size={18} className="text-white" />
@@ -219,7 +219,7 @@ export default function OverviewPage() {
           <div>
             <div className="flex items-center justify-between pb-3 border-b border-slate-100 mb-6">
               <h3 className="text-base font-bold text-slate-900">Audits Calendar</h3>
-              <button className="text-xs font-bold text-rose-500 hover:underline">View Calendar</button>
+              <button className="text-xs font-bold text-blue-600 hover:underline">View Calendar</button>
             </div>
 
             {/* Monthly Date Grid (Replicates June 21-27 header in image) */}
@@ -241,7 +241,7 @@ export default function OverviewPage() {
                   <span className="text-[8px] font-bold text-slate-400 mb-1">{d.day}</span>
                   <span className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-extrabold ${
                     d.active 
-                      ? 'bg-rose-500 text-white shadow-md shadow-rose-500/20' 
+                      ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20' 
                       : 'text-slate-700 hover:bg-slate-50'
                   }`}>
                     {d.date}

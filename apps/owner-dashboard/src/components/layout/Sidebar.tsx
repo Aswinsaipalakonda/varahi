@@ -76,27 +76,10 @@ export default function Sidebar() {
     <aside className="w-64 bg-[#000000] h-screen sticky top-0 flex flex-col justify-between p-5 z-40 border-r border-zinc-900/60 font-sans select-none">
       <div className="flex flex-col flex-1 overflow-hidden">
         {/* Brand Identity */}
-        <div className="flex items-center gap-2.5 mb-7 px-2">
-          <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-md shadow-blue-500/20">
-            <Shield size={20} className="fill-white/10" />
-          </div>
+        <div className="flex items-center gap-3 mb-8 px-2">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo.png" alt="Varahi Capital Logo" className="w-8 h-8 rounded-lg object-contain bg-white p-1" />
           <span className="text-base font-extrabold tracking-tight text-white">Varahi Capital</span>
-        </div>
-
-        {/* Profile Card */}
-        <div className="flex items-center justify-between p-3 bg-zinc-900/40 border border-zinc-900 rounded-2xl mb-5">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white font-extrabold text-[11px] shadow-sm shadow-blue-500/10">
-              {getInitials(userName)}
-            </div>
-            <div className="text-left">
-              <p className="text-xs font-bold text-white line-clamp-1 leading-none">{userName}</p>
-              <p className="text-[10px] text-slate-400 font-medium truncate mt-1">
-                {role === 'owner' ? 'Administrator' : 'Supervisor'}
-              </p>
-            </div>
-          </div>
-          <ChevronDown size={14} className="text-slate-500 mr-0.5" />
         </div>
 
         {/* Flat Navigation Menu List */}
@@ -110,7 +93,7 @@ export default function Sidebar() {
                 href={item.href}
                 className={`flex items-center gap-3.5 px-4 py-3 rounded-full transition-all duration-200 ${
                   isActive 
-                    ? 'bg-[#C07878] text-white font-semibold' 
+                    ? 'bg-blue-600 text-white font-semibold' 
                     : 'text-slate-400 hover:text-white hover:bg-zinc-900/40'
                 }`}
                 style={{
