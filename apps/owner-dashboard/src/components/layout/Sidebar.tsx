@@ -1,0 +1,158 @@
+'use client';
+
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
+import { 
+  TrendingUp, 
+  Users, 
+  CreditCard, 
+  Wallet, 
+  ShieldAlert, 
+  Share2, 
+  Bell, 
+  Download, 
+  LogOut, 
+  LayoutDashboard,
+  Shield,
+  ChevronDown
+} from 'lucide-react';
+
+interface MenuItem {
+  label: string;
+  href: string;
+  icon: React.ComponentType<any>;
+  role?: string;
+  category: 'menu' | 'management';
+}
+
+const allMenuItems: MenuItem[] = [
+  { label: 'Home', href: '/dashboard', icon: LayoutDashboard, category: 'menu' },
+  { label: 'Customers', href: '/dashboard/customers', icon: Users, category: 'menu' },
+  { label: 'Investment Plans', href: '/dashboard/plans', icon: TrendingUp, role: 'owner', category: 'menu' },
+  { label: 'Transactions', href: '/dashboard/transactions', icon: CreditCard, category: 'menu' },
+  { label: 'Payouts', href: '/dashboard/payouts', icon: Wallet, category: 'menu' },
+  { label: 'Supervisors', href: '/dashboard/supervisors', icon: ShieldAlert, role: 'owner', category: 'management' },
+  { label: 'Referrals', href: '/dashboard/referrals', icon: Share2, category: 'management' },
+  { label: 'Notifications', href: '/dashboard/notifications', icon: Bell, category: 'management' },
+  { label: 'Reports', href: '/dashboard/reports', icon: Download, category: 'management' },
+];
+
+export default function Sidebar() {
+  const pathname = usePathname();
+  const router = useRouter();
+  const [role, setRole] = useState('owner');
+  const [userName, setUserName] = useState('K N C PAVAN KUMAR');
+
+  useEffect(() => {
+    const userRole = Cookies.get('user_role') || 'owner';
+    const name = Cookies.get('user_name') || 'K N C PAVAN KUMAR';
+    setRole(userRole);
+    setUserName(name);
+  }, []);
+
+  const handleLogout = () => {
+    Cookies.remove('access_token');
+    Cookies.remove('refresh_token');
+    Cookies.remove('user_role');
+    Cookies.remove('user_name');
+    router.push('/login');
+  };
+
+  const getInitials = (name: string) => {
+    return name
+      .split(' ')
+      .filter(n => n.length > 0)
+      .slice(0, 2)
+      .map(n => n[0])
+      .join('')
+      .toUpperCase();
+  };
+
+  const menuItems = allMenuItems.filter(item => !item.role || item.role === role);
+
+  return (
+    <aside className="w-64 bg-[#000000] h-screen sticky top-0 flex flex-col justify-between p-5 z-40 border-r border-zinc-900/60 font-sans select-none">
+      <div className="flex flex-col flex-1 overflow-hidden">
+        {/* Brand Identity */}
+        <div className="flex items-center gap-2.5 mb-7 px-2">
+          <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-md shadow-blue-500/20">
+            <Shield size={20} className="fill-white/10" />
+          </div>
+          <span className="text-base font-extrabold tracking-tight text-white">Varahi Capital</span>
+        </div>
+
+        {/* Profile Card */}
+        <div className="flex items-center justify-between p-3 bg-zinc-900/40 border border-zinc-900 rounded-2xl mb-5">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white font-extrabold text-[11px] shadow-sm shadow-blue-500/10">
+              {getInitials(userName)}
+            </div>
+            <div className="text-left">
+              <p className="text-xs font-bold text-white line-clamp-1 leading-none">{userName}</p>
+              <p className="text-[10px] text-slate-400 font-medium truncate mt-1">
+                {role === 'owner' ? 'Administrator' : 'Supervisor'}
+              </p>
+            </div>
+          </div>
+          <ChevronDown size={14} className="text-slate-500 mr-0.5" />
+        </div>
+
+        {/* Flat Navigation Menu List */}
+        <div className="flex-1 overflow-y-auto pr-1 space-y-1">
+          {menuItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = pathname === item.href || (item.href !== '/dashboard' && pathname.startsWith(item.href));
+            return (
+              <Link 
+                key={item.href}
+                href={item.href}
+                className={`flex items-center gap-3.5 px-4 py-3 rounded-full transition-all duration-200 ${
+                  isActive 
+                    ? 'bg-[#C07878] text-white font-semibold' 
+                    : 'text-slate-400 hover:text-white hover:bg-zinc-900/40'
+                }`}
+                style={{
+                  fontSize: '14px',
+                  fontWeight: isActive ? 600 : 500,
+                  lineHeight: '20px',
+                }}
+              >
+                <Icon size={16} className={isActive ? 'text-white' : 'text-slate-400 group-hover:text-white'} />
+                <span>{item.label}</span>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Footer Pill Action & Logout */}
+      <div className="space-y-3.5 pt-4 border-t border-zinc-900">
+        {role === 'owner' ? (
+          <Link
+            href="/dashboard/plans"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs py-3 rounded-full flex items-center justify-center gap-1 shadow-md shadow-blue-500/10 transition-all uppercase tracking-wider cursor-pointer"
+          >
+            <span>Create New Plan +</span>
+          </Link>
+        ) : (
+          <Link
+            href="/dashboard/transactions"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs py-3 rounded-full flex items-center justify-center gap-1 shadow-md shadow-blue-500/10 transition-all uppercase tracking-wider cursor-pointer"
+          >
+            <span>Verify Deposits</span>
+          </Link>
+        )}
+
+        <button 
+          onClick={handleLogout}
+          className="flex items-center justify-center gap-2 px-4 py-2 text-slate-500 hover:text-rose-500 text-[10px] font-extrabold uppercase tracking-widest transition-all duration-200 cursor-pointer w-full text-center"
+        >
+          <LogOut size={13} />
+          <span>Logout</span>
+        </button>
+      </div>
+    </aside>
+  );
+}

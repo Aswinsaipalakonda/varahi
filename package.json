@@ -1,0 +1,19 @@
+{
+  "name": "varahi-platform",
+  "version": "1.0.0",
+  "description": "Investment & Payout Management Platform",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down"
+  },
+  "dependencies": {
+    "@types/js-cookie": "^3.0.6",
+    "js-cookie": "^3.0.8",
+    "lucide-react": "^1.21.0"
+  }
+}

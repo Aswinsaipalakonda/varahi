@@ -1,0 +1,31 @@
+{
+  "name": "varahi-mobile",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "expo": "~51.0.0",
+    "expo-router": "~3.5.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-native": "0.74.5",
+    "react-native-web": "~0.19.10",
+    "expo-local-authentication": "~14.0.1",
+    "expo-secure-store": "~13.0.2",
+    "expo-image-picker": "~15.0.7",
+    "expo-file-system": "~17.0.1",
+    "expo-notifications": "~0.28.15",
+    "axios": "^1.6.8",
+    "lucide-react-native": "^0.380.0",
+    "@react-navigation/native": "^6.1.17"
+  },
+  "devDependencies": {
+    "@types/react": "~18.2.45",
+    "typescript": "~5.3.3"
+  },
+  "private": true
+}
