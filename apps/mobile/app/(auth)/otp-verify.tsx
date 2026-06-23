@@ -1,10 +1,9 @@
+import { API_URL } from '../config';
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import * as SecureStore from 'expo-secure-store';
 
-
-const API_URL = 'http://localhost:8000/api/v1';
 
 export default function OtpVerifyScreen() {
   const { mobileNumber } = useLocalSearchParams();

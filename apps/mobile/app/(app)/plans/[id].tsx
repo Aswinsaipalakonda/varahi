@@ -1,10 +1,9 @@
+import { API_URL } from '../../config';
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import * as SecureStore from 'expo-secure-store';
 import { calculateMaturityValue } from '@packages/utils';
-
-const API_URL = 'http://localhost:8000/api/v1';
 
 export default function PlanDetailScreen() {
   const { id } = useLocalSearchParams();

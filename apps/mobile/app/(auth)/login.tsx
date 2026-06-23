@@ -1,9 +1,8 @@
+import { API_URL } from '../config';
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
 import { useRouter } from 'expo-router';
 import axios from 'axios';
-
-const API_URL = 'http://localhost:8000/api/v1';
 
 export default function LoginScreen() {
   const [mobileNumber, setMobileNumber] = useState('');

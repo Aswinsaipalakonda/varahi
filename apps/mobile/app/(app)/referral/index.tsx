@@ -1,8 +1,7 @@
+import { API_URL } from '../../config';
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, ActivityIndicator, Alert, Share } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
-
-const API_URL = 'http://localhost:8000/api/v1';
 
 export default function ReferralScreen() {
   const [loading, setLoading] = useState(true);

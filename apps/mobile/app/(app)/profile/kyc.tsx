@@ -1,10 +1,9 @@
+import { API_URL } from '../../config';
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, ActivityIndicator, Alert, Image } from 'react-native';
 import { useRouter } from 'expo-router';
 import * as ImagePicker from 'expo-image-picker';
 import * as SecureStore from 'expo-secure-store';
-
-const API_URL = 'http://localhost:8000/api/v1';
 
 export default function KycScreen() {
   const [loading, setLoading] = useState(true);

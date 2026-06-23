@@ -1,9 +1,8 @@
+import { API_URL } from '../../config';
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { useRouter } from 'expo-router';
 import * as SecureStore from 'expo-secure-store';
-
-const API_URL = 'http://localhost:8000/api/v1';
 
 export default function PlansScreen() {
   const [plans, setPlans] = useState<any[]>([]);
