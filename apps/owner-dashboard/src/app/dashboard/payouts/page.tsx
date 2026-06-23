@@ -140,13 +140,13 @@ export default function PayoutsPage() {
       </div>
 
       <div className="flex items-center gap-3">
-        <span className="text-xs font-semibold text-slate-400 font-mono uppercase">Filter:</span>
+        <span className="text-xs font-semibold text-slate-400 font-sans uppercase">Filter:</span>
         <div className="flex gap-2">
           {['', 'pending', 'overdue', 'paid'].map((statusOption) => (
             <button
               key={statusOption}
               onClick={() => setStatusFilter(statusOption)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold font-mono capitalize transition-all cursor-pointer ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold font-sans capitalize transition-all cursor-pointer ${
                 statusFilter === statusOption
                   ? 'bg-blue-600 text-white shadow-sm'
                   : 'bg-white border border-slate-200 text-slate-500 hover:text-slate-700'
@@ -167,7 +167,7 @@ export default function PayoutsPage() {
       <div className="rounded-[24px] border border-slate-200 bg-white overflow-hidden shadow-sm">
         <table className="w-full text-left text-xs border-collapse">
           <thead>
-            <tr className="border-b border-slate-100 bg-slate-50/50 text-slate-500 font-semibold uppercase tracking-wider font-mono">
+            <tr className="border-b border-slate-100 bg-slate-50/50 text-slate-500 font-semibold uppercase tracking-wider font-sans">
               <th className="p-4 w-12">
                 <input 
                   type="checkbox" 
@@ -187,7 +187,7 @@ export default function PayoutsPage() {
           <tbody className="divide-y divide-slate-100 text-slate-700">
             {payouts.length === 0 ? (
               <tr>
-                <td colSpan={7} className="p-8 text-center text-slate-400 font-mono">No payouts registered.</td>
+                <td colSpan={7} className="p-8 text-center text-slate-400 font-sans">No payouts registered.</td>
               </tr>
             ) : (
               payouts.map((payout) => (
@@ -204,14 +204,14 @@ export default function PayoutsPage() {
                   </td>
                   <td className="p-4">
                     <p className="font-semibold text-slate-900">{payout.customer_name || 'Unregistered'}</p>
-                    <p className="text-[10px] text-slate-400 font-mono mt-0.5">{payout.customer_mobile}</p>
+                    <p className="text-[10px] text-slate-400 font-sans mt-0.5">{payout.customer_mobile}</p>
                   </td>
                   <td className="p-4">
                     <p className="font-semibold text-slate-800">{payout.plan_name}</p>
-                    <p className="text-[10px] text-slate-400 font-mono mt-0.5">{payout.remarks || 'Monthly Yield Payout'}</p>
+                    <p className="text-[10px] text-slate-400 font-sans mt-0.5">{payout.remarks || 'Monthly Yield Payout'}</p>
                   </td>
-                  <td className="p-4 font-mono font-bold text-slate-900">{formatINR(payout.amount)}</td>
-                  <td className="p-4 font-mono text-slate-550">{payout.due_date}</td>
+                  <td className="p-4 font-sans font-bold text-slate-900">{formatINR(payout.amount)}</td>
+                  <td className="p-4 font-sans text-slate-550">{payout.due_date}</td>
                   <td className="p-4">
                     <span className={`px-2.5 py-0.5 rounded-full font-semibold border text-[10px] ${
                       payout.status === 'paid' 
@@ -235,7 +235,7 @@ export default function PayoutsPage() {
                         <span>Mark Paid</span>
                       </button>
                     ) : (
-                      <span className="text-[10px] text-slate-400 font-mono">Paid</span>
+                      <span className="text-[10px] text-slate-400 font-sans">Paid</span>
                     )}
                   </td>
                 </tr>

@@ -472,7 +472,7 @@ export default function CustomersPage() {
                     <button 
                       onClick={() => handleKycStatusChange('approve')}
                       disabled={actionLoading}
-                      className="flex-1 py-3 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white font-bold text-xs rounded-full flex items-center justify-center gap-1.5 shadow-lg shadow-blue-500/10 transition-all uppercase tracking-wider cursor-pointer"
+                      className="flex-1 py-3 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 shadow-lg shadow-blue-500/10 transition-all uppercase tracking-wider cursor-pointer"
                     >
                       <CheckCircle2 size={14} />
                       <span>Approve KYC</span>
@@ -483,7 +483,7 @@ export default function CustomersPage() {
                     <button 
                       onClick={() => handleKycStatusChange('reject')}
                       disabled={actionLoading}
-                      className="flex-1 py-3 border border-slate-200 hover:bg-slate-50 disabled:opacity-50 text-slate-500 font-bold text-xs rounded-full flex items-center justify-center gap-1.5 transition-all uppercase tracking-wider cursor-pointer"
+                      className="flex-1 py-3 border border-slate-200 hover:bg-slate-50 disabled:opacity-50 text-slate-500 font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 transition-all uppercase tracking-wider cursor-pointer"
                     >
                       <XCircle size={14} />
                       <span>Reject KYC</span>

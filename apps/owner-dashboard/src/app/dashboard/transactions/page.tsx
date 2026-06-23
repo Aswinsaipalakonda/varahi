@@ -155,7 +155,7 @@ export default function TransactionsPage() {
         <div className="rounded-[24px] border border-slate-200 bg-white overflow-hidden shadow-sm">
           <table className="w-full text-left text-xs border-collapse">
             <thead>
-              <tr className="border-b border-slate-100 bg-slate-50/50 text-slate-500 font-semibold uppercase tracking-wider font-mono">
+              <tr className="border-b border-slate-100 bg-slate-50/50 text-slate-500 font-semibold uppercase tracking-wider font-sans">
                 <th className="p-4">Customer</th>
                 <th className="p-4">Investment Plan</th>
                 <th className="p-4">Amount</th>
@@ -173,14 +173,14 @@ export default function TransactionsPage() {
                 >
                   <td className="p-4">
                     <p className="font-bold text-slate-900">{txn.customer_name || 'Unregistered'}</p>
-                    <p className="text-[10px] text-slate-400 mt-0.5 font-mono">{txn.customer_mobile}</p>
+                    <p className="text-[10px] text-slate-400 mt-0.5 font-sans">{txn.customer_mobile}</p>
                   </td>
                   <td className="p-4">
                     <p className="font-semibold text-slate-800">{txn.plan_details.name}</p>
-                    <p className="text-[10px] text-slate-400 mt-0.5 font-mono">{txn.plan_details.return_rate_percent}% p.a. • {txn.plan_details.tenure_months}M</p>
+                    <p className="text-[10px] text-slate-400 mt-0.5 font-sans">{txn.plan_details.return_rate_percent}% p.a. • {txn.plan_details.tenure_months}M</p>
                   </td>
-                  <td className="p-4 font-mono font-bold text-slate-900">{formatINR(txn.amount)}</td>
-                  <td className="p-4 font-mono text-slate-500 font-semibold">{txn.upi_txn_ref}</td>
+                  <td className="p-4 font-sans font-bold text-slate-900">{formatINR(txn.amount)}</td>
+                  <td className="p-4 font-sans text-slate-500 font-semibold">{txn.upi_txn_ref}</td>
                   <td className="p-4">
                     {txn.screenshot ? (
                       <span className="flex items-center gap-1.5 text-blue-600 font-semibold">
@@ -227,7 +227,7 @@ export default function TransactionsPage() {
             <div className="flex-1 overflow-y-auto p-6 space-y-6">
               {/* General Information */}
               <div className="space-y-3">
-                <h3 className="text-[10px] font-bold text-slate-400 tracking-wider uppercase font-mono">General Information</h3>
+                <h3 className="text-[10px] font-bold text-slate-400 tracking-wider uppercase font-sans">General Information</h3>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-extrabold text-xs">
                     {getInitials(activeTxn.customer_name || 'Unregistered')}
@@ -243,7 +243,7 @@ export default function TransactionsPage() {
 
               {/* Payment Information */}
               <div className="space-y-3">
-                <h3 className="text-[10px] font-bold text-slate-400 tracking-wider uppercase font-mono">Payment Information</h3>
+                <h3 className="text-[10px] font-bold text-slate-400 tracking-wider uppercase font-sans">Payment Information</h3>
                 <div className="grid grid-cols-2 gap-4 text-xs">
                   <div>
                     <span className="text-slate-450 block font-medium">Plan Package</span>
@@ -255,11 +255,11 @@ export default function TransactionsPage() {
                   </div>
                   <div>
                     <span className="text-slate-450 block font-medium">Transaction Amount</span>
-                    <span className="font-bold text-blue-600 text-sm font-mono">{formatINR(activeTxn.amount)}</span>
+                    <span className="font-bold text-blue-600 text-sm font-sans">{formatINR(activeTxn.amount)}</span>
                   </div>
                   <div>
                     <span className="text-slate-450 block font-medium">UPI UTR Reference</span>
-                    <span className="font-bold text-slate-700 font-mono">{activeTxn.upi_txn_ref}</span>
+                    <span className="font-bold text-slate-700 font-sans">{activeTxn.upi_txn_ref}</span>
                   </div>
                 </div>
               </div>
@@ -268,7 +268,7 @@ export default function TransactionsPage() {
 
               {/* Payment Proof Image Inline */}
               <div className="space-y-3">
-                <h3 className="text-[10px] font-bold text-slate-400 tracking-wider uppercase font-mono">Receipt Screenshot Proof</h3>
+                <h3 className="text-[10px] font-bold text-slate-400 tracking-wider uppercase font-sans">Receipt Screenshot Proof</h3>
                 {activeTxn.screenshot ? (
                   <div className="border border-slate-200 rounded-2xl overflow-hidden bg-slate-50 relative aspect-[3/4] max-h-64 flex justify-center items-center">
                     <img 
@@ -287,7 +287,7 @@ export default function TransactionsPage() {
               {/* Rejection input toggle */}
               {showRejectForm && (
                 <div className="space-y-3 pt-3 border-t border-slate-100">
-                  <label className="block text-[10px] font-bold text-slate-400 uppercase font-mono">Rejection Reason</label>
+                  <label className="block text-[10px] font-bold text-slate-400 uppercase font-sans">Rejection Reason</label>
                   <textarea 
                     value={reason}
                     onChange={(e) => setReason(e.target.value)}

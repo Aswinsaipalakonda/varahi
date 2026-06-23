@@ -78,7 +78,7 @@ export default function Sidebar() {
         {/* Brand Identity */}
         <div className="flex items-center gap-3 mb-8 px-2">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.png" alt="Varahi Capital Logo" className="w-8 h-8 rounded-lg object-contain bg-white p-1" />
+          <img src="/logo.png" alt="Varahi Capital Logo" className="w-10 h-10 object-contain" />
           <span className="text-base font-extrabold tracking-tight text-white">Varahi Capital</span>
         </div>
 
@@ -91,7 +91,7 @@ export default function Sidebar() {
               <Link 
                 key={item.href}
                 href={item.href}
-                className={`flex items-center gap-3.5 px-4 py-3 rounded-full transition-all duration-200 ${
+                className={`flex items-center gap-3.5 px-4 py-3 rounded-xl transition-all duration-200 ${
                   isActive 
                     ? 'bg-blue-600 text-white font-semibold' 
                     : 'text-slate-400 hover:text-white hover:bg-zinc-900/40'
@@ -110,27 +110,11 @@ export default function Sidebar() {
         </div>
       </div>
 
-      {/* Footer Pill Action & Logout */}
-      <div className="space-y-3.5 pt-4 border-t border-zinc-900">
-        {role === 'owner' ? (
-          <Link
-            href="/dashboard/plans"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs py-3 rounded-full flex items-center justify-center gap-1 shadow-md shadow-blue-500/10 transition-all uppercase tracking-wider cursor-pointer"
-          >
-            <span>Create New Plan +</span>
-          </Link>
-        ) : (
-          <Link
-            href="/dashboard/transactions"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs py-3 rounded-full flex items-center justify-center gap-1 shadow-md shadow-blue-500/10 transition-all uppercase tracking-wider cursor-pointer"
-          >
-            <span>Verify Deposits</span>
-          </Link>
-        )}
-
+      {/* Footer / Logout */}
+      <div className="pt-4 border-t border-zinc-900">
         <button 
           onClick={handleLogout}
-          className="flex items-center justify-center gap-2 px-4 py-2 text-slate-500 hover:text-rose-500 text-[10px] font-extrabold uppercase tracking-widest transition-all duration-200 cursor-pointer w-full text-center"
+          className="flex items-center justify-center gap-2 px-4 py-2.5 text-slate-500 hover:text-rose-500 text-[10px] font-extrabold uppercase tracking-widest transition-all duration-200 cursor-pointer w-full text-center hover:bg-zinc-900/20 rounded-xl"
         >
           <LogOut size={13} />
           <span>Logout</span>
