@@ -163,7 +163,7 @@ export default function KycScreen() {
   if (loading) {
     return (
       <View style={styles.loaderContainer}>
-        <ActivityIndicator size="large" color="#6366F1" />
+        <ActivityIndicator size="large" color="#2563EB" />
       </View>
     );
   }
@@ -380,7 +380,7 @@ const styles = StyleSheet.create({
     lineHeight: 16,
   },
   sectionTitle: {
-    color: '#6366F1',
+    color: '#2563EB',
     fontSize: 14,
     fontWeight: 'bold',
     textTransform: 'uppercase',
@@ -447,13 +447,13 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   pickerText: {
-    color: '#6366F1',
+    color: '#2563EB',
     fontSize: 11,
     fontWeight: 'bold',
   },
   submitButton: {
-    backgroundColor: '#6366F1',
-    borderRadius: 12,
+    backgroundColor: '#2563EB',
+    borderRadius: 28,
     paddingVertical: 14,
     alignItems: 'center',
     marginTop: 10,
@@ -464,7 +464,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   backButton: {
-    borderRadius: 12,
+    borderRadius: 28,
     paddingVertical: 14,
     alignItems: 'center',
     marginTop: 10,

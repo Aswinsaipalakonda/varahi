@@ -72,7 +72,7 @@ export default function PortfolioScreen() {
   if (loading) {
     return (
       <View style={styles.loaderContainer}>
-        <ActivityIndicator size="large" color="#6366F1" />
+        <ActivityIndicator size="large" color="#2563EB" />
       </View>
     );
   }
@@ -223,7 +223,7 @@ const styles = StyleSheet.create({
     paddingTop: 12,
   },
   statsText: {
-    color: '#6366F1',
+    color: '#2563EB',
     fontSize: 12,
     fontWeight: '600',
   },

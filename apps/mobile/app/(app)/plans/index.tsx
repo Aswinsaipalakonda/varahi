@@ -34,7 +34,7 @@ export default function PlansScreen() {
   if (loading) {
     return (
       <View style={styles.loaderContainer}>
-        <ActivityIndicator size="large" color="#6366F1" />
+        <ActivityIndicator size="large" color="#2563EB" />
       </View>
     );
   }
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   cardRate: {
-    color: '#6366F1',
+    color: '#2563EB',
     fontSize: 15,
     fontWeight: 'bold',
   },

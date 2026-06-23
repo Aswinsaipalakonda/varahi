@@ -51,7 +51,7 @@ export default function PlanDetailScreen() {
   if (loading) {
     return (
       <View style={styles.loaderContainer}>
-        <ActivityIndicator size="large" color="#6366F1" />
+        <ActivityIndicator size="large" color="#2563EB" />
       </View>
     );
   }
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
   },
   rate: {
     fontSize: 14,
-    color: '#6366F1',
+    color: '#2563EB',
     fontWeight: 'bold',
     marginTop: 6,
   },
@@ -237,8 +237,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   button: {
-    backgroundColor: '#6366F1',
-    borderRadius: 12,
+    backgroundColor: '#2563EB',
+    borderRadius: 28,
     paddingVertical: 14,
     alignItems: 'center',
     marginBottom: 30,

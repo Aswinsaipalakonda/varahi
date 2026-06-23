@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import * as SecureStore from 'expo-secure-store';
-import axios from 'react-native';
+
 
 const API_URL = 'http://localhost:8000/api/v1';
 
@@ -146,8 +146,8 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   button: {
-    backgroundColor: '#6366F1',
-    borderRadius: 12,
+    backgroundColor: '#2563EB',
+    borderRadius: 28,
     paddingVertical: 14,
     alignItems: 'center',
     marginTop: 24,

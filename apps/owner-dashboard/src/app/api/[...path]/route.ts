@@ -38,7 +38,13 @@ async function handleProxy(req: NextRequest, { params }: { params: Promise<{ pat
   const pathStr = path.join('/');
   const token = req.cookies.get('access_token')?.value;
 
-  const url = `${DJANGO_API_URL}/${pathStr}/${req.nextUrl.search}`;
+  // Rewrite admin paths to auth/admin for Django matching
+  let resolvedPath = pathStr;
+  if (pathStr.startsWith('admin/')) {
+    resolvedPath = `auth/${pathStr}`;
+  }
+
+  const url = `${DJANGO_API_URL}/${resolvedPath}/${req.nextUrl.search}`;
 
   const headers = new Headers();
   headers.set('Content-Type', req.headers.get('Content-Type') || 'application/json');
@@ -65,6 +71,9 @@ async function handleProxy(req: NextRequest, { params }: { params: Promise<{ pat
 
   // Attempt backend connection, fall back to mock data on failure/auth removal
   try {
+    if (!token || token === 'mock-access-token') {
+      throw new Error('Using mock fallback for demo');
+    }
     const response = await fetch(url, {
       method,
       headers,

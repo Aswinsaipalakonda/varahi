@@ -11,7 +11,7 @@ export default function AppLayout() {
         borderTopColor: 'rgba(255,255,255,0.05)',
         height: 60,
       },
-      tabBarActiveTintColor: '#6366F1',
+      tabBarActiveTintColor: '#2563EB',
       tabBarInactiveTintColor: '#9E9EAF',
     }}>
       <Tabs.Screen name="home/index" options={{ title: 'Home' }} />

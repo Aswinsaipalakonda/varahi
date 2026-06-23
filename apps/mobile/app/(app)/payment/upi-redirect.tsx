@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   ref: {
-    color: '#6366F1',
+    color: '#2563EB',
     fontSize: 16,
     fontWeight: 'bold',
     fontFamily: 'monospace',
@@ -113,8 +113,8 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   payButton: {
-    backgroundColor: '#6366F1',
-    borderRadius: 12,
+    backgroundColor: '#2563EB',
+    borderRadius: 28,
     paddingVertical: 14,
     alignItems: 'center',
   },
@@ -125,13 +125,13 @@ const styles = StyleSheet.create({
   },
   uploadButton: {
     borderWidth: 1,
-    borderColor: '#6366F1',
-    borderRadius: 12,
+    borderColor: '#2563EB',
+    borderRadius: 28,
     paddingVertical: 14,
     alignItems: 'center',
   },
   uploadButtonText: {
-    color: '#6366F1',
+    color: '#2563EB',
     fontSize: 14,
     fontWeight: 'bold',
   },

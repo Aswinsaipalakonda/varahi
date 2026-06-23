@@ -33,7 +33,7 @@ export default function PayoutsScreen() {
   if (loading) {
     return (
       <View style={styles.loaderContainer}>
-        <ActivityIndicator size="large" color="#6366F1" />
+        <ActivityIndicator size="large" color="#2563EB" />
       </View>
     );
   }

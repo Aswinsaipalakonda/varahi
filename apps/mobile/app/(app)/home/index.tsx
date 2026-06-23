@@ -43,7 +43,7 @@ export default function HomeScreen() {
   if (loading) {
     return (
       <View style={styles.loaderContainer}>
-        <ActivityIndicator size="large" color="#6366F1" />
+        <ActivityIndicator size="large" color="#2563EB" />
       </View>
     );
   }
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     paddingTop: 14,
   },
   statsText: {
-    color: '#6366F1',
+    color: '#2563EB',
     fontSize: 12,
     fontWeight: '600',
   },
@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
   actionButton: {
     width: '47%',
     backgroundColor: '#151428',
-    borderRadius: 16,
+    borderRadius: 28,
     padding: 16,
     alignItems: 'center',
     borderWidth: 1,
@@ -223,8 +223,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   emptyButton: {
-    backgroundColor: '#6366F1',
-    borderRadius: 12,
+    backgroundColor: '#2563EB',
+    borderRadius: 28,
     paddingHorizontal: 20,
     paddingVertical: 10,
     marginTop: 14,
@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   invAmount: {
-    color: '#6366F1',
+    color: '#2563EB',
     fontSize: 14,
     fontWeight: 'bold',
   },

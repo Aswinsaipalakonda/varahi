@@ -58,7 +58,7 @@ export default function ReferralScreen() {
   if (loading) {
     return (
       <View style={styles.loaderContainer}>
-        <ActivityIndicator size="large" color="#6366F1" />
+        <ActivityIndicator size="large" color="#2563EB" />
       </View>
     );
   }
@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
     letterSpacing: 2,
   },
   shareButton: {
-    backgroundColor: '#6366F1',
+    backgroundColor: '#2563EB',
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 8,
