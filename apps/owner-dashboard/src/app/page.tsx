@@ -5,6 +5,10 @@ import Link from 'next/link';
 import { Shield, TrendingUp, Zap, Users, ArrowRight, Smartphone, LayoutGrid, CheckCircle } from 'lucide-react';
 
 export default function LandingPage() {
+  React.useEffect(() => {
+    document.title = 'Varahi Capital | Asset & Yield Infrastructure';
+  }, []);
+
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-blue-500 selection:text-white font-sans overflow-x-hidden">
       {/* Background Gradients & Grids */}

@@ -6,6 +6,10 @@ import Cookies from 'js-cookie';
 import { Lock, Mail, Loader2, Sparkles, ShieldCheck } from 'lucide-react';
 
 export default function LoginPage() {
+  React.useEffect(() => {
+    document.title = 'Login | Varahi Capital';
+  }, []);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);

@@ -122,7 +122,7 @@ export default function OverviewPage() {
             <div className={`p-6 rounded-[24px] ${card.color} text-white relative overflow-hidden transition-all duration-200 hover:-translate-y-1 shadow-lg shadow-indigo-900/5`}>
               <div className="flex items-start justify-between">
                 <div className="space-y-1">
-                  <span className="text-[10px] font-bold text-slate-400 tracking-wider uppercase font-mono">{card.label}</span>
+                  <span className="text-[10px] font-bold text-slate-400 tracking-wider uppercase font-sans">{card.label}</span>
                   <h2 className="text-2xl font-extrabold font-sans tracking-tight leading-8" style={{ fontSize: '24px', fontWeight: 800, lineHeight: '32px' }}>{card.value}</h2>
                 </div>
                 <div className="p-3 bg-white/10 rounded-2xl">
@@ -130,7 +130,7 @@ export default function OverviewPage() {
                 </div>
               </div>
               
-              <div className="mt-6 pt-3 border-t border-white/5 flex items-center gap-2 text-[9px] font-bold font-mono">
+              <div className="mt-6 pt-3 border-t border-white/5 flex items-center gap-2 text-[9px] font-bold font-sans">
                 <span className={card.change.startsWith('+') ? 'text-emerald-400' : 'text-slate-400'}>{card.change}</span>
                 <span className="text-slate-500 uppercase tracking-widest">{card.labelUnder}</span>
               </div>
@@ -164,7 +164,7 @@ export default function OverviewPage() {
 
           <div className="py-6 flex-1">
             {/* Legend */}
-            <div className="flex items-center gap-6 mb-4 text-[10px] font-bold font-mono">
+            <div className="flex items-center gap-6 mb-4 text-[10px] font-bold font-sans">
               <div className="flex items-center gap-1.5">
                 <span className="w-2.5 h-1.5 bg-blue-600 rounded-sm"></span>
                 <span className="text-slate-500">REVENUE (AUM)</span>
@@ -176,39 +176,67 @@ export default function OverviewPage() {
             </div>
 
             {/* Custom SVG Line Chart (Replicates smooth graphics line in image) */}
-            <div className="w-full h-56 relative pt-4">
-              <svg className="w-full h-full overflow-visible" viewBox="0 0 500 160">
+            <div className="w-full h-64 relative pt-4">
+              <svg className="w-full h-full overflow-visible" viewBox="0 0 500 220">
                 <defs>
-                  {/* Grid Lines */}
-                  <pattern id="grid" width="100" height="40" patternUnits="userSpaceOnUse">
-                    <path d="M 0 40 L 100 40" fill="none" stroke="rgba(0,0,0,0.02)" strokeWidth="1" />
-                  </pattern>
+                  {/* Grid Shadow/Glow */}
+                  <filter id="shadow" x="-5%" y="-5%" width="110%" height="120%">
+                    <feDropShadow dx="0" dy="8" stdDeviation="6" floodColor="#2563EB" floodOpacity="0.22"/>
+                  </filter>
+                  <filter id="tooltipShadow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="4" stdDeviation="3" floodColor="#000000" floodOpacity="0.12"/>
+                  </filter>
                   {/* Gradient under the line */}
                   <linearGradient id="lineGlow" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#2563EB" stopOpacity="0.15" />
+                    <stop offset="0%" stopColor="#2563EB" stopOpacity="0.18" />
                     <stop offset="100%" stopColor="#2563EB" stopOpacity="0.0" />
                   </linearGradient>
                 </defs>
-                {/* Grid */}
-                <rect width="500" height="160" fill="url(#grid)" />
+
+                {/* Horizontal Grid Lines */}
+                <line x1="45" y1="170" x2="480" y2="170" stroke="#F1F5F9" strokeWidth="1" strokeDasharray="4 4" />
+                <line x1="45" y1="130" x2="480" y2="130" stroke="#F1F5F9" strokeWidth="1" strokeDasharray="4 4" />
+                <line x1="45" y1="90"  x2="480" y2="90"  stroke="#F1F5F9" strokeWidth="1" strokeDasharray="4 4" />
+                <line x1="45" y1="50"  x2="480" y2="50"  stroke="#F1F5F9" strokeWidth="1" strokeDasharray="4 4" />
+                <line x1="45" y1="20"  x2="480" y2="20"  stroke="#F1F5F9" strokeWidth="1" strokeDasharray="4 4" />
 
                 {/* Shading beneath graph */}
-                <path d="M 10 160 Q 100 120 180 80 T 360 40 T 490 20 L 490 160 Z" fill="url(#lineGlow)" />
+                <path d="M 45 137 C 100 130, 110 118, 154 116 C 198 114, 219 98, 263 95 C 307 92, 327 72, 371 68 C 415 64, 440 52, 480 49 L 480 180 L 45 180 Z" fill="url(#lineGlow)" />
 
-                {/* Smooth curve line */}
-                <path d="M 10 160 Q 100 120 180 80 T 360 40 T 490 20" fill="none" stroke="#2563EB" strokeWidth="3" strokeLinecap="round" />
+                {/* Smooth curve line with filter shadow */}
+                <path d="M 45 137 C 100 130, 110 118, 154 116 C 198 114, 219 98, 263 95 C 307 92, 327 72, 371 68 C 415 64, 440 52, 480 49" fill="none" stroke="#2563EB" strokeWidth="3.5" strokeLinecap="round" filter="url(#shadow)" />
 
-                {/* Highlight dots with ring */}
-                <circle cx="10" cy="160" r="4" fill="#2563EB" stroke="white" strokeWidth="1.5" />
-                <circle cx="120" cy="115" r="4" fill="#2563EB" stroke="white" strokeWidth="1.5" />
-                <circle cx="210" cy="75" r="4" fill="#2563EB" stroke="white" strokeWidth="1.5" />
-                <circle cx="360" cy="40" r="5" fill="#10B981" stroke="white" strokeWidth="2" />
-                <circle cx="490" cy="20" r="4" fill="#2563EB" stroke="white" strokeWidth="1.5" />
+                {/* Highlight dots with rings */}
+                <circle cx="45" cy="137" r="4.5" fill="#2563EB" stroke="white" strokeWidth="1.5" />
+                <circle cx="154" cy="116" r="4.5" fill="#2563EB" stroke="white" strokeWidth="1.5" />
+                <circle cx="263" cy="95" r="4.5" fill="#2563EB" stroke="white" strokeWidth="1.5" />
+                
+                {/* Active Glowing Dot (Green) */}
+                <circle cx="371" cy="68" r="8" fill="#10B981" fillOpacity="0.2" className="animate-pulse" />
+                <circle cx="371" cy="68" r="5" fill="#10B981" stroke="white" strokeWidth="2" />
+                
+                <circle cx="480" cy="49" r="4.5" fill="#2563EB" stroke="white" strokeWidth="1.5" />
 
-                {/* Chart axes details */}
-                <text x="10" y="158" className="text-[9px] font-mono fill-slate-400 font-bold">8K</text>
-                <text x="120" y="110" className="text-[9px] font-mono fill-slate-400 font-bold">12K</text>
-                <text x="210" y="70" className="text-[9px] font-mono fill-slate-400 font-bold">16K</text>
+                {/* Y-Axis text labels (placed at x="35" for zero overlap) */}
+                <text x="35" y="174" textAnchor="end" className="text-[9px] font-sans fill-slate-400 font-bold">₹5.0M</text>
+                <text x="35" y="134" textAnchor="end" className="text-[9px] font-sans fill-slate-400 font-bold">₹10.0M</text>
+                <text x="35" y="94" textAnchor="end" className="text-[9px] font-sans fill-slate-400 font-bold">₹15.0M</text>
+                <text x="35" y="54" textAnchor="end" className="text-[9px] font-sans fill-slate-400 font-bold">₹20.0M</text>
+                <text x="35" y="24" textAnchor="end" className="text-[9px] font-sans fill-slate-400 font-bold">₹25.0M</text>
+
+                {/* X-Axis month labels (placed under the grid area at y="200") */}
+                <text x="45" y="200" textAnchor="middle" className="text-[10px] font-sans fill-slate-400 font-bold">Apr</text>
+                <text x="154" y="200" textAnchor="middle" className="text-[10px] font-sans fill-slate-400 font-bold">May</text>
+                <text x="263" y="200" textAnchor="middle" className="text-[10px] font-sans fill-slate-400 font-bold">Jun</text>
+                <text x="371" y="200" textAnchor="middle" className="text-[10px] font-sans fill-slate-400 font-bold">Jul</text>
+                <text x="480" y="200" textAnchor="middle" className="text-[10px] font-sans fill-slate-400 font-bold">Aug</text>
+
+                {/* Tooltip Card above active point */}
+                <g transform="translate(371, 32)">
+                  <rect x="-38" y="-22" width="76" height="20" rx="6" fill="#1D173C" filter="url(#tooltipShadow)" />
+                  <path d="M -5 -2 L 0 3 L 5 -2 Z" fill="#1D173C" />
+                  <text x="0" y="-9" textAnchor="middle" className="text-[9px] font-sans fill-white font-bold">₹24.5M AUM</text>
+                </g>
               </svg>
             </div>
           </div>
@@ -252,7 +280,7 @@ export default function OverviewPage() {
 
             {/* Checklists pending (Matches the appointment checklist container in image) */}
             <div className="space-y-4 pt-4 border-t border-slate-100">
-              <span className="text-[10px] font-bold text-slate-400 tracking-wider uppercase font-mono">Today's Audits Checklist</span>
+              <span className="text-[10px] font-bold text-slate-400 tracking-wider uppercase font-sans">Today's Audits Checklist</span>
               
               <div className="p-4 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col items-center justify-center text-center h-44">
                 <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mb-3 text-blue-600">

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import Cookies from 'js-cookie';
 import Sidebar from '@/components/layout/Sidebar';
 import TopNav from '@/components/layout/TopNav';
@@ -13,6 +13,7 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const router = useRouter();
+  const pathname = usePathname();
   const [authorized, setAuthorized] = useState(false);
 
   useEffect(() => {
@@ -23,6 +24,26 @@ export default function DashboardLayout({
       setAuthorized(true);
     }
   }, [router]);
+
+  useEffect(() => {
+    const segments = pathname.split('/').filter(Boolean);
+    if (segments.length === 1 && segments[0] === 'dashboard') {
+      document.title = 'Overview | Varahi Capital';
+    } else if (segments.length > 1) {
+      const subpage = segments[1];
+      const titleMap: Record<string, string> = {
+        customers: 'Customers | Varahi Capital',
+        plans: 'Investment Plans | Varahi Capital',
+        transactions: 'Transactions | Varahi Capital',
+        payouts: 'Payouts | Varahi Capital',
+        supervisors: 'Supervisors | Varahi Capital',
+        referrals: 'Referrals | Varahi Capital',
+        notifications: 'Notifications | Varahi Capital',
+        reports: 'Reports | Varahi Capital',
+      };
+      document.title = titleMap[subpage] || `${subpage.charAt(0).toUpperCase() + subpage.slice(1)} | Varahi Capital`;
+    }
+  }, [pathname]);
 
   if (!authorized) {
     return (

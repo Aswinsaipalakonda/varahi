@@ -91,7 +91,7 @@ export default function Sidebar() {
               <Link 
                 key={item.href}
                 href={item.href}
-                className={`flex items-center gap-3.5 px-4 py-3 rounded-xl transition-all duration-200 ${
+                className={`flex items-center gap-3.5 px-4 py-3 rounded-full transition-all duration-200 ${
                   isActive 
                     ? 'bg-blue-600 text-white font-semibold' 
                     : 'text-slate-400 hover:text-white hover:bg-zinc-900/40'
