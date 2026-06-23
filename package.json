@@ -15,5 +15,8 @@
     "@types/js-cookie": "^3.0.6",
     "js-cookie": "^3.0.8",
     "lucide-react": "^1.21.0"
+  },
+  "overrides": {
+    "ajv": "^8.20.0"
   }
 }
