@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tabs } from 'expo-router';
-import { Home, TrendingUp, Briefcase, Share2, User } from 'lucide-react-native';
+import { Home, Briefcase, DollarSign, User } from 'lucide-react-native';
 
 export default function AppLayout() {
   return (
@@ -31,24 +31,17 @@ export default function AppLayout() {
         }}
       />
       <Tabs.Screen
-        name="plans"
-        options={{
-          title: 'Plans',
-          tabBarIcon: ({ color, size }) => <TrendingUp color={color} size={size} />,
-        }}
-      />
-      <Tabs.Screen
         name="portfolio"
         options={{
-          title: 'Portfolio',
+          title: 'Investments',
           tabBarIcon: ({ color, size }) => <Briefcase color={color} size={size} />,
         }}
       />
       <Tabs.Screen
-        name="referrals"
+        name="earnings"
         options={{
-          title: 'Referrals',
-          tabBarIcon: ({ color, size }) => <Share2 color={color} size={size} />,
+          title: 'Earnings',
+          tabBarIcon: ({ color, size }) => <DollarSign color={color} size={size} />,
         }}
       />
       <Tabs.Screen
@@ -56,6 +49,19 @@ export default function AppLayout() {
         options={{
           title: 'Profile',
           tabBarIcon: ({ color, size }) => <User color={color} size={size} />,
+        }}
+      />
+      {/* Hide unused screens from tab bar navigation */}
+      <Tabs.Screen
+        name="plans"
+        options={{
+          href: null,
+        }}
+      />
+      <Tabs.Screen
+        name="referrals"
+        options={{
+          href: null,
         }}
       />
     </Tabs>

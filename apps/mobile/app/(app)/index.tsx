@@ -1,90 +1,103 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Text, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Wallet, TrendingUp, Calendar, ArrowUpRight, Bell, Award } from 'lucide-react-native';
+import { Wallet, TrendingUp, Calendar, ArrowUpRight, Bell, Eye, EyeOff, Menu, Layers, DollarSign, ArrowRightLeft } from 'lucide-react-native';
 import Animated, { FadeInUp } from 'react-native-reanimated';
-
-const { width } = Dimensions.get('window');
+import { useRouter } from 'expo-router';
 
 export default function HomeDashboard() {
+  const [showBalance, setShowBalance] = useState(true);
+  const router = useRouter();
+
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
-      {/* Header */}
+      {/* Custom Premium Header */}
       <View style={styles.header}>
-        <View>
-          <Text style={styles.greeting}>Welcome back,</Text>
-          <Text style={styles.name}>Aswin Sai</Text>
-        </View>
-        <TouchableOpacity style={styles.notificationBtn}>
-          <Bell size={20} color="#1E293B" />
+        <TouchableOpacity style={styles.headerIcon}>
+          <Menu size={22} color="#1E293B" />
+        </TouchableOpacity>
+        <Text style={styles.greeting}>Hello, Ramesh 👋</Text>
+        <TouchableOpacity style={styles.headerIcon}>
+          <Bell size={22} color="#1E293B" />
         </TouchableOpacity>
       </View>
 
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
-        {/* Main Card */}
-        <Animated.View entering={FadeInUp.delay(100).duration(800)} style={styles.mainCard}>
-          <View style={styles.mainCardHeader}>
-            <Text style={styles.mainCardLabel}>Total Portfolio Value</Text>
-            <View style={styles.badge}>
-              <TrendingUp size={12} color="#10B981" />
-              <Text style={styles.badgeText}>+0.7% Daily</Text>
-            </View>
+        {/* Total Balance Blue Card */}
+        <Animated.View entering={FadeInUp.delay(100).duration(800)} style={styles.balanceCard}>
+          <View style={styles.balanceHeader}>
+            <Text style={styles.balanceLabel}>Total Balance</Text>
+            <TouchableOpacity onPress={() => setShowBalance(!showBalance)}>
+              {showBalance ? <Eye size={20} color="#FFFFFF" /> : <EyeOff size={20} color="#FFFFFF" />}
+            </TouchableOpacity>
           </View>
-          <Text style={styles.mainCardValue}>₹1,25,000.00</Text>
-          <View style={styles.divider} />
-          <View style={styles.cardStats}>
-            <View style={styles.statCol}>
-              <Text style={styles.statLabel}>Active Yield</Text>
-              <Text style={styles.statValue}>₹875.00/day</Text>
-            </View>
-            <View style={styles.statCol}>
-              <Text style={styles.statLabel}>Total Earned</Text>
-              <Text style={styles.statValue}>₹18,375.00</Text>
-            </View>
-          </View>
+          <Text style={styles.balanceValue}>
+            {showBalance ? '₹ 1,42,800' : '••••••'}
+          </Text>
         </Animated.View>
 
-        {/* Payout Banner */}
-        <Animated.View entering={FadeInUp.delay(200).duration(800)} style={styles.payoutCard}>
-          <View style={styles.payoutIconContainer}>
-            <Calendar size={20} color="#2563EB" />
-          </View>
-          <View style={styles.payoutInfo}>
-            <Text style={styles.payoutLabel}>Next Estimated Payout</Text>
-            <Text style={styles.payoutDate}>08 July 2026</Text>
-          </View>
-          <View style={styles.payoutAmountContainer}>
-            <Text style={styles.payoutAmount}>₹13,125</Text>
-          </View>
-        </Animated.View>
-
-        {/* Quick Actions */}
-        <Text style={styles.sectionTitle}>Quick Actions</Text>
+        {/* 2x2 Grid Stats */}
         <View style={styles.grid}>
-          <TouchableOpacity style={styles.actionBtn}>
-            <View style={[styles.actionIcon, { backgroundColor: '#EFF6FF' }]}>
-              <Wallet size={20} color="#2563EB" />
+          <Animated.View entering={FadeInUp.delay(200).duration(600)} style={styles.gridCard}>
+            <View style={[styles.gridIconContainer, { backgroundColor: '#E8F5E9' }]}>
+              <Layers size={18} color="#2E7D32" />
             </View>
-            <Text style={styles.actionText}>Invest Now</Text>
-          </TouchableOpacity>
+            <Text style={styles.gridLabel}>Total Investment</Text>
+            <Text style={styles.gridValue}>₹ 1,00,000</Text>
+          </Animated.View>
 
-          <TouchableOpacity style={styles.actionBtn}>
-            <View style={[styles.actionIcon, { backgroundColor: '#ECFDF5' }]}>
-              <Award size={20} color="#059669" />
+          <Animated.View entering={FadeInUp.delay(250).duration(600)} style={styles.gridCard}>
+            <View style={[styles.gridIconContainer, { backgroundColor: '#E3F2FD' }]}>
+              <TrendingUp size={18} color="#1565C0" />
             </View>
-            <Text style={styles.actionText}>Rewards</Text>
-          </TouchableOpacity>
+            <Text style={styles.gridLabel}>Total Earnings</Text>
+            <Text style={styles.gridValue}>₹ 42,800</Text>
+          </Animated.View>
+
+          <Animated.View entering={FadeInUp.delay(300).duration(600)} style={styles.gridCard}>
+            <View style={[styles.gridIconContainer, { backgroundColor: '#FFF8E1' }]}>
+              <Wallet size={18} color="#F57F17" />
+            </View>
+            <Text style={styles.gridLabel}>Available Balance</Text>
+            <Text style={styles.gridValue}>₹ 5,600</Text>
+          </Animated.View>
+
+          <Animated.View entering={FadeInUp.delay(350).duration(600)} style={styles.gridCard}>
+            <View style={[styles.gridIconContainer, { backgroundColor: '#F3E5F5' }]}>
+              <ArrowRightLeft size={18} color="#7B1FA2" />
+            </View>
+            <Text style={styles.gridLabel}>Withdrawable</Text>
+            <Text style={styles.gridValue}>₹ 5,600</Text>
+          </Animated.View>
         </View>
 
-        {/* Recent Updates */}
-        <Text style={styles.sectionTitle}>Performance Analytics</Text>
-        <View style={styles.analyticsList}>
-          <View style={styles.analyticsItem}>
-            <Text style={styles.analyticsTitle}>Varahi Capital Plan Alpha</Text>
-            <Text style={styles.analyticsSubtitle}>15-day cycle • 10.5% Yield per cycle</Text>
-            <Text style={styles.analyticsStatus}>Active</Text>
+        {/* Next Payout Section */}
+        <Animated.View entering={FadeInUp.delay(400).duration(800)} style={styles.sectionHeaderContainer}>
+          <Text style={styles.sectionTitle}>Next Payout</Text>
+          <Text style={styles.payoutDate}>15 May 2025</Text>
+        </Animated.View>
+
+        <Animated.View entering={FadeInUp.delay(450).duration(800)} style={styles.payoutDetailCard}>
+          <View style={styles.payoutStat}>
+            <Text style={styles.payoutStatLabel}>Expected Amount</Text>
+            <Text style={styles.payoutStatValue}>₹ 5,670</Text>
           </View>
-        </View>
+          <View style={styles.payoutDivider} />
+          <View style={styles.payoutStat}>
+            <Text style={styles.payoutStatLabel}>After TDS (10%)</Text>
+            <Text style={[styles.payoutStatValue, { color: '#059669' }]}>₹ 5,103</Text>
+          </View>
+        </Animated.View>
+
+        {/* New Investment Button */}
+        <Animated.View entering={FadeInUp.delay(500).duration(800)}>
+          <TouchableOpacity 
+            style={styles.newInvestmentBtn}
+            onPress={() => router.push('/invest-now')}
+          >
+            <Text style={styles.newInvestmentBtnText}>+ New Investment</Text>
+          </TouchableOpacity>
+        </Animated.View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -100,195 +113,152 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 20,
-    paddingVertical: 15,
+    paddingVertical: 16,
     backgroundColor: '#FFFFFF',
     borderBottomWidth: 1,
     borderBottomColor: '#F1F5F9',
   },
-  greeting: {
-    fontSize: 14,
-    color: '#64748B',
-  },
-  name: {
-    fontSize: 20,
-    fontWeight: '700',
-    color: '#0F172A',
-  },
-  notificationBtn: {
+  headerIcon: {
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#F1F5F9',
+    backgroundColor: '#F8FAFC',
     justifyContent: 'center',
     alignItems: 'center',
   },
+  greeting: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#0F172A',
+  },
   scrollContent: {
     padding: 20,
+    paddingBottom: 40,
   },
-  mainCard: {
-    backgroundColor: '#1E3A8A',
-    borderRadius: 24,
+  balanceCard: {
+    backgroundColor: '#3B82F6',
+    borderRadius: 20,
     padding: 24,
-    shadowColor: '#1E3A8A',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.15,
-    shadowRadius: 16,
-    elevation: 4,
-    marginBottom: 16,
+    shadowColor: '#2563EB',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.12,
+    shadowRadius: 12,
+    elevation: 3,
+    marginBottom: 20,
   },
-  mainCardHeader: {
+  balanceHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: 10,
   },
-  mainCardLabel: {
-    color: '#93C5FD',
+  balanceLabel: {
+    color: '#E0F2FE',
     fontSize: 14,
     fontWeight: '500',
   },
-  badge: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#1E293B',
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 12,
-  },
-  badgeText: {
-    color: '#10B981',
-    fontSize: 11,
-    fontWeight: '600',
-    marginLeft: 4,
-  },
-  mainCardValue: {
+  balanceValue: {
     color: '#FFFFFF',
     fontSize: 32,
     fontWeight: '800',
     letterSpacing: -0.5,
-    marginBottom: 16,
   },
-  divider: {
-    height: 1,
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-    marginBottom: 16,
-  },
-  cardStats: {
+  grid: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+    gap: 16,
+    marginBottom: 24,
   },
-  statCol: {
-    flex: 1,
-  },
-  statLabel: {
-    color: '#93C5FD',
-    fontSize: 12,
-    marginBottom: 4,
-  },
-  statValue: {
-    color: '#FFFFFF',
-    fontSize: 16,
-    fontWeight: '600',
-  },
-  payoutCard: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  gridCard: {
+    width: (Dimensions.get('window').width - 56) / 2,
     backgroundColor: '#FFFFFF',
     borderRadius: 16,
     padding: 16,
     borderWidth: 1,
     borderColor: '#E2E8F0',
-    marginBottom: 24,
+    shadowColor: '#0F172A',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.03,
+    shadowRadius: 6,
+    elevation: 1,
   },
-  payoutIconContainer: {
-    width: 44,
-    height: 44,
-    borderRadius: 12,
-    backgroundColor: '#EFF6FF',
+  gridIconContainer: {
+    width: 36,
+    height: 36,
+    borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 12,
+    marginBottom: 12,
   },
-  payoutInfo: {
-    flex: 1,
-  },
-  payoutLabel: {
+  gridLabel: {
     fontSize: 12,
     color: '#64748B',
-    marginBottom: 2,
+    marginBottom: 4,
   },
-  payoutDate: {
-    fontSize: 14,
-    fontWeight: '600',
+  gridValue: {
+    fontSize: 16,
+    fontWeight: '700',
     color: '#0F172A',
   },
-  payoutAmountContainer: {
-    backgroundColor: '#EFF6FF',
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 8,
-  },
-  payoutAmount: {
-    fontSize: 14,
-    fontWeight: '700',
-    color: '#2563EB',
+  sectionHeaderContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 12,
   },
   sectionTitle: {
     fontSize: 16,
     fontWeight: '700',
     color: '#0F172A',
-    marginBottom: 12,
   },
-  grid: {
-    flexDirection: 'row',
-    gap: 16,
-    marginBottom: 24,
-  },
-  actionBtn: {
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-    borderRadius: 16,
-    padding: 16,
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#E2E8F0',
-  },
-  actionIcon: {
-    width: 48,
-    height: 48,
-    borderRadius: 14,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 8,
-  },
-  actionText: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#1E293B',
-  },
-  analyticsList: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: '#E2E8F0',
-    padding: 16,
-  },
-  analyticsItem: {
-    gap: 4,
-  },
-  analyticsTitle: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#0F172A',
-  },
-  analyticsSubtitle: {
+  payoutDate: {
     fontSize: 12,
+    fontWeight: '600',
     color: '#64748B',
   },
-  analyticsStatus: {
+  payoutDetailCard: {
+    flexDirection: 'row',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    padding: 16,
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
+    marginBottom: 24,
+  },
+  payoutStat: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  payoutStatLabel: {
     fontSize: 12,
-    fontWeight: '600',
-    color: '#059669',
-    marginTop: 4,
+    color: '#64748B',
+    marginBottom: 4,
+  },
+  payoutStatValue: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#0F172A',
+  },
+  payoutDivider: {
+    width: 1,
+    backgroundColor: '#E2E8F0',
+    marginVertical: 4,
+  },
+  newInvestmentBtn: {
+    backgroundColor: '#2563EB',
+    borderRadius: 9999,
+    paddingVertical: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#2563EB',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
+    elevation: 3,
+  },
+  newInvestmentBtnText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: '700',
   },
 });
